@@ -1,0 +1,33 @@
+{% extends "unit_logs/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="card mb-3">
+    <h4 class="card-header">
+        {{ error }}
+
+    {{ unit }} - {{ unit.status}} - {{ unit.date_added }}
+    </h4>
+
+    <div class="card-body">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+            {% endbuttons %}
+        </form>
+    
+        <form method="POST" action="{% url 'unit_logs:delete_unit' unit.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-block">Delete</button>
+        </form>
+    
+    </div>
+</div>
+
+
+
+{% endblock content %}
+

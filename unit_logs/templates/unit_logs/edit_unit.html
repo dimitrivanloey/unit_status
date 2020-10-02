@@ -1,0 +1,16 @@
+{% extends "unit_logs/base.html" %}
+
+{% block content %}
+
+    <p><a href="{% url 'unit_logs:unit' unit.id %}">{{ unit }}</a></p>
+
+    <p>Edit unit:</p>
+
+    <form action="{% url 'unit_logs:edit_unit' unit.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button name="submit">Save Changes</button>
+    </form>
+
+{% endblock content %}
+

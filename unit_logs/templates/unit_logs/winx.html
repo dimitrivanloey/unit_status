@@ -1,0 +1,58 @@
+<style>
+    .units{
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+
+    }
+</style>
+
+<div class="units">
+
+<div>
+    <p>Sticks:</p>
+<ul>
+    {% for unit in units %}
+        {% if unit.status == 'STICK' and unit.type == 'W' %}
+        
+            <li>{{ unit }}  ({{ unit.date_added|date:'M d' }})</li>
+            
+        {% endif %}
+    {% endfor %}
+</ul>
+</div>
+
+
+<div>
+    <p>Not on map:</p>
+<ul>
+{% for unit in units %}
+    {% if unit.status == 'MISSING' and unit.type == 'W' %}
+    
+    <li>{{ unit }}  ({{ unit.date_added|date:'M d' }})</li>
+    
+    {% endif %}
+{% endfor %}
+</ul>
+</div>
+
+<div>
+    <p>Failed:</p>
+<ul>
+{% for unit in units %}
+    {% if unit.status == 'FAILED' and unit.type == 'W' %}
+    
+    <li>{{ unit }}  ({{ unit.date_added|date:'M d' }})</li>
+    
+    {% endif %}
+{% endfor %}
+</ul>
+</div>
+
+
+</div>
+
+    
+
+
+
