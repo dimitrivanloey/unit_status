@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from .models import Unit
 from .forms import UnitForm
 
+@xframe_options_exempt
 @login_required
 def index(request):
     """The home page for unit logs"""
     return render(request, 'unit_logs/index.html')
 
+@xframe_options_exempt
 @login_required
 def units(request):
     """Show all units"""
@@ -16,43 +19,49 @@ def units(request):
     context = {'units': units}
     return render (request, 'unit_logs/units.html', context)
 
+@xframe_options_exempt
 def winx(request):
     """Show all winx"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/winx.html', context)
 
+@xframe_options_exempt
 def enable(request):
     """Show all enable"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/enable.html', context)
 
+@xframe_options_exempt
 def arkle(request):
     """Show all arkle"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/arkle.html', context)
 
-
+@xframe_options_exempt
 def denman(request):
     """Show all denman"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/denman.html', context)
 
+@xframe_options_exempt
 def kauto(request):
     """Show all kauto"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/kauto.html', context)
 
+@xframe_options_exempt
 def frankel(request):
     """Show all frankel"""
     units = Unit.objects.order_by('date_added')
     context = {'units': units}
     return render (request, 'unit_logs/frankel.html', context)
 
+@xframe_options_exempt
 @login_required
 def unit(request, unit_id):
     """Show a single unit"""
@@ -60,6 +69,7 @@ def unit(request, unit_id):
     context = {'unit': unit}
     return render(request, 'unit_logs/unit.html', context)
 
+@xframe_options_exempt
 @login_required
 def new_unit(request):
     """Add a new unit"""
@@ -77,6 +87,7 @@ def new_unit(request):
     context = {'form': form}
     return render(request, 'unit_logs/new_unit.html', context)
 
+@xframe_options_exempt
 @login_required
 def edit_unit(request, unit_id):
     """Edit an existing unit"""
@@ -95,6 +106,7 @@ def edit_unit(request, unit_id):
         context = {'unit': unit, 'form': form}
         return render(request, 'unit_logs/edit_unit.html', context)
 
+@xframe_options_exempt
 @login_required
 def show_unit(request, unit_pk):
     unit = get_object_or_404(Unit, pk=unit_pk)
@@ -109,6 +121,7 @@ def show_unit(request, unit_pk):
         except ValueError:
             return render(request, 'unit_logs/edit_unit.html', {'unit': unit, 'form': form, 'error': 'Bad info'})
 
+@xframe_options_exempt
 @login_required
 def delete_unit(request, unit_pk):
     unit = get_object_or_404(Unit, pk=unit_pk)

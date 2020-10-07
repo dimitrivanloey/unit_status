@@ -18,14 +18,15 @@
 </div>
 
 <div class="units">
+    
 
 <div>
     <p>Sticks:</p>
 <ul>
     {% for unit in units %}
-        {% if unit.status == 'STICK' and unit.type == 'W' %}
+        {% if unit.status == 'STICK' and unit.type == 'W'  %}
             <a href="{% url 'unit_logs:show_unit' unit.id %}">
-            <li>{{ unit }}  ({{ unit.date_added|date:'M d' }})</li>
+            <li>{{ unit }}  </li>
             </a>
         {% endif %}
     {% endfor %}
